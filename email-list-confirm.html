@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Mercer Mall - Mailing List Confirm</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+    <script>
+      //<![CDATA[
+      var decode = function ( text ) {
+          text = text.replace(/\+/g, " ");
+          text = text.replace(/%[a-fA-F0-9]{2}/g,
+              function ( text ) {
+                  return String.fromCharCode( "0x" + text.substr(1,2));
+              }
+          );
+          return text;
+      }
+
+      var display_data = function () {
+          var url_parts = window.location.toString().split("?");
+          if ( url_parts.length != 2 ) return;
+
+          var fields = url_parts[1].split("&");
+
+          if ( fields.length == 0 ) {
+              document.write("<p>No data was submitted.</p>");
+          } else {
+              document.write("<dl>");
+              var field_parts;
+              for ( var i in fields ) {
+                  field_parts = fields[i].split("=");
+                  field_parts[0] = decode( field_parts[0] );
+                  field_parts[1] = decode( field_parts[1] );
+                  document.write("<dt>" + field_parts[0] + "</dt>");
+                  document.write("<dd>" + field_parts[1] + "</dd>");
+              }
+              document.write("</dl>");
+          }
+      }
+      //]]>
+    </script>
+  </head>
+<!-- NAVBAR
+================================================== -->
+  <body>
+
+    <!-- NAVBAR -->
+    <div class="navbar-wrapper">
+      <div class="container">
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html">Mercer Mall</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="index.html ">Home</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stores <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="daniel.html">Sports</a></li>
+                    <li><a href="brenda.html">Pets</a></li>
+                    <li><a href="paul.html">Games</a></li>
+                    <li><a href="talya.html">Food</a></li>
+                  </ul>
+                </li>
+                <li><a href="team.html">About Us</a></li>
+                <li class="active"><a href="email-list.html">Mailing List</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+    <div class="container">
+      
+      <!-- FORM SUCCESS -->
+      <section>
+        <div class="jumbotron">
+          <h1>Thanks for joining!</h1>
+          <p>Your registration has been submitted with the following data:</p>
+          <script type="text/javascript">display_data();</script>
+        </div>
+      </section>
+
+      <hr/>
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2015 Mercer Mall</p>
+      </footer>
+
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
